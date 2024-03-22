@@ -14,4 +14,4 @@ class UserSchema(ma.Schema):
         fields = ('id', 'name', 'email', 'password', 'is_admin',)
         
 user_schema = UserSchema(exclude=['password'])
-user_schema = UserSchema(many=True, exclude=['password']) 
+users_schema = UserSchema(many=True, exclude=['password']) 
