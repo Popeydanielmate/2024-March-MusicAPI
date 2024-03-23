@@ -22,7 +22,4 @@ class GroupSchema(ma.Schema):
     
     class Meta:
         fields = ('id', 'group_name', 'genre', 'biography', 'discography')
-        ordered = True
-
-
-    
+        ordered = True        
