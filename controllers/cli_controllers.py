@@ -1,6 +1,7 @@
 from flask import Blueprint
 from init import db, bcrypt
 from models.user import User
+from models.group import Group
 
 db_commands = Blueprint('db', __name__)
 
@@ -30,6 +31,18 @@ def seed_tables():
     ]
     
     db.session.add_all(users)
+    
+    groups = [
+        Group(
+            group_name="The Popeys",
+            genre="Indie/Rock/Alternative",
+            biography="The Popeys formed in Sydney in 2005 and begun playing the local pub circuit until catching the attention of a famous record label",
+            discography="Self titled- 2006, Album 2- 2010, Album 3- 2014, Album 4- 2019"
+        )
+    ]
+
+    db.session.add_all(groups)
+    
     db.session.commit()
     
     print("Tables seeded")
