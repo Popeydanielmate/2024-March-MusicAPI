@@ -1,3 +1,4 @@
+from marshmallow import fields
 from init import db, ma 
 
 
@@ -10,6 +11,8 @@ class Group(db.Model):
     biography = db.Column(db.Text)
     discography = db.Column(db.Text)
     
+    media = db.relationship('media', back_populates='group')
+    
 class GroupSchema(ma.Schema):
     
     id = ma.auto_field()
@@ -19,7 +22,7 @@ class GroupSchema(ma.Schema):
     discography = ma.String(required=True)
     
 class GroupSchema(ma.Schema):
-    
+    media = fields.List(fields.Nested('MediaSchema'))
     class Meta:
-        fields = ('id', 'group_name', 'genre', 'biography', 'discography')
+        fields = ('id', 'group_name', 'genre', 'biography', 'discography', 'media')
         ordered = True        
