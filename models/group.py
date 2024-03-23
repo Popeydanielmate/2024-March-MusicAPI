@@ -11,7 +11,7 @@ class Group(db.Model):
     biography = db.Column(db.Text)
     discography = db.Column(db.Text)
     
-    media = db.relationship('media', back_populates='group')
+    media = db.relationship('Media', back_populates='group')
     
 class GroupSchema(ma.Schema):
     
