@@ -2,6 +2,7 @@ from flask import Blueprint
 from init import db, bcrypt
 from models.user import User
 from models.group import Group
+from models.media import Media
 
 db_commands = Blueprint('db', __name__)
 
@@ -43,6 +44,41 @@ def seed_tables():
 
     db.session.add_all(groups)
     
-    db.session.commit()
+    the_popeys_group = Group.query.filter_by(group_name='The Popeys').first()
+
+    if the_popeys_group:
+        media = [
+            Media(
+                title="Song no.1",
+                release_date="02-03-2006",
+                duration="4.30",
+                group_id=the_popeys_group.id
+            ),
+            Media(
+                title="Song no.2",
+                release_date="05-07-2010",
+                duration="3.52",
+                group_id=the_popeys_group.id
+            ),
+            Media(
+                title="Song no.3",
+                release_date="30-08-2014",
+                duration="4.43",
+                group_id=the_popeys_group.id
+            ),
+            Media(
+                title="Song no.4",
+                release_date="05-10-2019",
+                duration="3.27",
+                group_id=the_popeys_group.id
+            )
+        ]
+    
+        db.session.add_all(media)
+    
+        db.session.commit()
+    
+    else:
+        print("The Popeys group not found")
     
     print("Tables seeded")

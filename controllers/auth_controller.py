@@ -8,7 +8,7 @@ from psycopg2 import errorcodes
 
 auth_bp = Blueprint('auth', __name__ , url_prefix='/auth')
 
-@auth_bp.route("/register", methods=["POST"]) # /auth/register
+@auth_bp.route("/register", methods=["POST"])
 def auth_register():
     try:
         body_data = request.get_json() 

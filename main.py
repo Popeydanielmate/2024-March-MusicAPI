@@ -27,5 +27,8 @@ def create_app():
     from controllers.group_controller import groups_bp
     app.register_blueprint(groups_bp)
     
+    from controllers.media_controller import media_bp
+    app.register_blueprint(media_bp)
+    
     return app
     
