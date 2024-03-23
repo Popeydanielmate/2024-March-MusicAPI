@@ -17,7 +17,7 @@ class Media(db.Model):
 class MediaSchema(ma.Schema):
     group_id = fields.Nested('GroupSchema', only = ['group_name'])
     class Meta:
-        fields = ('id', 'title', 'release_date', 'duration', 'group') 
+        fields = ('id', 'title', 'release_date', 'duration', 'group_id') 
         
 media_schema = MediaSchema()
 medias_schema = MediaSchema(many=True)
