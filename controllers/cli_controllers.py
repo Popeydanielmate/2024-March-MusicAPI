@@ -1,8 +1,10 @@
+from datetime import datetime
 from flask import Blueprint
 from init import db, bcrypt
 from models.user import User
 from models.group import Group
 from models.media import Media
+from models.comment import Comment
 
 db_commands = Blueprint('db', __name__)
 
@@ -75,10 +77,24 @@ def seed_tables():
         ]
     
         db.session.add_all(media)
-    
-        db.session.commit()
-    
+        
     else:
         print("The Popeys group not found")
+        
+    comments = [
+        Comment(
+            title="Comment title 1",
+            body="This is a comment",
+            timestamp=datetime.utcnow(),
+            user=users[0],
+            media=media[0]
+            )
+    ]
+    
+    db.session.add_all(comments)
+    
+    db.session.commit()
+    
+   
     
     print("Tables seeded")

@@ -30,5 +30,8 @@ def create_app():
     from controllers.media_controller import media_bp
     app.register_blueprint(media_bp)
     
+    from controllers.comment_controller import comments_bp 
+    app.register_blueprint(comments_bp)
+    
     return app
     
