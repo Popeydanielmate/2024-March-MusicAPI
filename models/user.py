@@ -8,10 +8,12 @@ class User(db.Model):
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
+    
+    comments = db.relationship('Comment', back_populates='user', cascade='all, delete')
 
 class UserSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'name', 'email', 'password', 'is_admin',)
+        fields = ('id', 'name', 'email', 'password', 'is_admin', 'comments')
         
 user_schema = UserSchema(exclude=['password'])
 users_schema = UserSchema(many=True, exclude=['password']) 
