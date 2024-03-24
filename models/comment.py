@@ -16,7 +16,6 @@ class Comment(db.Model):
     user = db.relationship('User', back_populates='comments')
     media = db.relationship('Media', back_populates='comments')
     
-# Comment schema
 class CommentSchema(ma.Schema):
     
     user = fields.Nested('UserSchema', only=['name', 'email'])
